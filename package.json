@@ -6,7 +6,7 @@
   "repository": "https://github.com/AbelOsaretin/Save-ERC-20",
   "author": "AbelOsaretin <contact.abel321@gmail.com>",
   "license": "MIT",
-  "private": null,
+  "private": false,
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.0",
     "@nomicfoundation/hardhat-ethers": "^3.0.0",
