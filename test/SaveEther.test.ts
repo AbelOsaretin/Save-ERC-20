@@ -5,7 +5,8 @@ const { ethers } = require("hardhat");
 
 describe("SaveERC20", function () {
   it("test deposit into contract", async function () {
-    const SaveERC20 = await ethers.getContractFactory("SaveERC20");
+    const conAddress = 0xe104a233a99ddd0ec23291731678ecf20a624cf7;
+    const SaveERC20 = await ethers.getContractFactory("SaveERC20", conAddress);
     const contract = await SaveERC20.deploy();
     await contract.deployed();
     console.log("storage deployed at:" + contract.address);
