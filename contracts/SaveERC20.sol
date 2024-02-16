@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
-import "./IERC20.sol";
+import "./IToken.sol";
 
 contract SaveERC20 {
     address savingToken;
@@ -20,12 +20,12 @@ contract SaveERC20 {
         require(msg.sender != address(0), "address zero detected");
         require(_amount > 0, "can't save zero value");
         require(
-            IERC20(savingToken).balanceOf(msg.sender) >= _amount,
+            IToken(savingToken).balanceOf(msg.sender) >= _amount,
             "not enough token"
         );
 
         require(
-            IERC20(savingToken).transferFrom(
+            IToken(savingToken).transferFrom(
                 msg.sender,
                 address(this),
                 _amount
@@ -49,7 +49,7 @@ contract SaveERC20 {
         savings[msg.sender] -= _amount;
 
         require(
-            IERC20(savingToken).transfer(msg.sender, _amount),
+            IToken(savingToken).transfer(msg.sender, _amount),
             "failed to withdraw"
         );
 
@@ -61,12 +61,12 @@ contract SaveERC20 {
     }
 
     function checkContractBalance() external view returns (uint256) {
-        return IERC20(savingToken).balanceOf(address(this));
+        return IToken(savingToken).balanceOf(address(this));
     }
 
     function ownerWithdraw(uint256 _amount) external {
         require(msg.sender == owner, "not owner");
 
-        IERC20(savingToken).transfer(msg.sender, _amount);
+        IToken(savingToken).transfer(msg.sender, _amount);
     }
 }
